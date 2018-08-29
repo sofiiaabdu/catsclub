@@ -1,27 +1,18 @@
-$.ajax({
-    url: "/",
-    dataType: "json",
-    method: "GET",
-    success: function(data) {
-       $('.testimg').attr('src', data.url)
-    }
-})
-
-
 $(document).ready(
     function(){
-        console.log("ready!")
-        $(".image").each(
-            function(index, element) {
-                // console.log(element)
-                console.log($(element).attr("image_id"))
+        $('.image').each(
+            function (index, element) {
+                var id = $(element).attr('image_id')
                 $.ajax({
-                    url:"/",
-                    dataType: "json",
-                    method:"GET",
-                    success: function (data) {
-                        $(element).attr("src", data.url)
-                    }
-                })
+                        url: '/images/' + id,
+                        method: 'GET',
+                        dataType: 'JSON',
+                        success: function (data) {
+                            console.log(index)
+                            if(data.url){
+                                $(element).attr('src', data.url)
+                            }
+                        }
+                    })
             })
     })
