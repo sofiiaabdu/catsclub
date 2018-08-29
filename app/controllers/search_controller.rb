@@ -13,5 +13,16 @@ class SearchController < ApplicationController
     response['Content-Type'] = 'application/json'
     response['x-api-key'] = api_key
     @rnd_img = JSON.parse(response.body)
+
+    respond_to do |format|
+      format.html do
+        render
+      end
+      format.json do
+        render json: {
+            url: "https://78.media.tumblr.com/tumblr_lzhyni85ln1qzv52ko1_500.jpg"
+        }
+      end
+    end
   end
 end
